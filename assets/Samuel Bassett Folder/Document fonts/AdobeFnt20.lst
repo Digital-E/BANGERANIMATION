@@ -1,0 +1,115 @@
+%!Adobe-FontList 1.20
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Invalid
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Samuel Bassett Folder/Document fonts/AdobeFnt20.lst
+FileLength:2754
+FileModTime:594745509
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+MenuName:Minion Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Minion Pro
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Samuel Bassett Folder/Document fonts/MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:218640
+FileModTime:457523241
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent_BO-1000500
+FamilyName:TroisMille Lent
+StyleName:1000500
+MenuName:TroisMille Lent 1000500
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent 1000500
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Samuel Bassett Folder/Document fonts/TroisMilleLent-1000500.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:8640
+FileModTime:545314031
+NameArray:0,Mac,4,TroisMille Lent 1000500
+NameArray:0,Win,1,TroisMille Lent 1000500
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent-WideBlack
+FamilyName:TroisMille Lent
+StyleName:WideBlack
+MenuName:TroisMille Lent WideBlack
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent WideBlack
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Samuel Bassett Folder/Document fonts/TroisMilleLent-WideBlack.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:10092
+FileModTime:545314034
+NameArray:0,Mac,4,TroisMille Lent WideBlack
+NameArray:0,Win,1,TroisMille Lent WideBlack
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent-WideThin
+FamilyName:TroisMille Lent
+StyleName:WideThin
+MenuName:TroisMille Lent WideThin
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent WideThin
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Samuel Bassett Folder/Document fonts/TroisMilleLent-WideThin.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:10464
+FileModTime:545314036
+NameArray:0,Mac,4,TroisMille Lent WideThin
+NameArray:0,Win,1,TroisMille Lent WideThin
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+

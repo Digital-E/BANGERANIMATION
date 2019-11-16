@@ -1,0 +1,297 @@
+%!Adobe-FontList 1.20
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Invalid
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/AdobeFnt20.lst
+FileLength:7385
+FileModTime:594827047
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:DrukXCond-Super
+FamilyName:Druk XCond
+StyleName:Super
+MenuName:Druk XCond Super
+StyleBits:0
+WeightClass:1000
+WidthClass:2
+AngleClass:0
+FullName:Druk XCond Super
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/Druk XCond-Super.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:86216
+FileModTime:414697103
+NameArray:0,Mac,4,Druk XCond Super
+NameArray:0,Win,1,Druk XCond Super
+NameArray:0,Win,16,Druk XCond
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:DrukText-Super
+FamilyName:Druk Text
+StyleName:Super
+MenuName:Druk Text Super
+StyleBits:0
+WeightClass:1000
+WidthClass:5
+AngleClass:0
+FullName:Druk Text Super
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/DrukText-Super.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:131700
+FileModTime:515439858
+NameArray:0,Mac,4,Druk Text Super
+NameArray:0,Win,1,Druk Text Super
+NameArray:0,Win,16,Druk Text
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:DrukWide-Heavy
+FamilyName:Druk Wide
+StyleName:Heavy
+MenuName:Druk Wide Heavy
+StyleBits:0
+WeightClass:900
+WidthClass:5
+AngleClass:0
+FullName:Druk Wide Heavy
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/DrukWide-Heavy.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:133176
+FileModTime:515439860
+NameArray:0,Mac,4,Druk Wide Heavy
+NameArray:0,Win,1,Druk Wide Heavy
+NameArray:0,Win,16,Druk Wide
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Graphik-MediumItalic
+FamilyName:Graphik
+StyleName:Medium Italic
+MenuName:Graphik Medium
+StyleBits:1
+WeightClass:500
+WidthClass:5
+AngleClass:1
+FullName:Graphik Medium Italic
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/Graphik-Medium Italic.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:134776
+FileModTime:277214026
+NameArray:0,Mac,4,Graphik Medium Italic
+NameArray:0,Win,1,Graphik Medium
+NameArray:0,Win,16,Graphik
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+MenuName:Minion Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Minion Pro
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:218640
+FileModTime:457523241
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent_BO-000500
+FamilyName:TroisMille Lent
+StyleName:000500
+MenuName:TroisMille Lent 000500
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent 000500
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/TroisMilleLent-000500.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:8172
+FileModTime:545314077
+NameArray:0,Mac,4,TroisMille Lent 000500
+NameArray:0,Win,1,TroisMille Lent 000500
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent_BO-5001000
+FamilyName:TroisMille Lent
+StyleName:5001000
+MenuName:TroisMille Lent 5001000
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent 5001000
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/TroisMilleLent-5001000.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:8476
+FileModTime:545314087
+NameArray:0,Mac,4,TroisMille Lent 5001000
+NameArray:0,Win,1,TroisMille Lent 5001000
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent_BO-500500
+FamilyName:TroisMille Lent
+StyleName:500500
+MenuName:TroisMille Lent 500500
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent 500500
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/TroisMilleLent-500500.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:8504
+FileModTime:545314082
+NameArray:0,Mac,4,TroisMille Lent 500500
+NameArray:0,Win,1,TroisMille Lent 500500
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent-NarrowBlack
+FamilyName:TroisMille Lent
+StyleName:NarrowBlack
+MenuName:TroisMille Lent NarrowBlack
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent NarrowBlack
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/TroisMilleLent-NarrowBlack.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:9012
+FileModTime:545314032
+NameArray:0,Mac,4,TroisMille Lent NarrowBlack
+NameArray:0,Win,1,TroisMille Lent NarrowBlack
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent-WideBlack
+FamilyName:TroisMille Lent
+StyleName:WideBlack
+MenuName:TroisMille Lent WideBlack
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent WideBlack
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/TroisMilleLent-WideBlack.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:10092
+FileModTime:545314034
+NameArray:0,Mac,4,TroisMille Lent WideBlack
+NameArray:0,Win,1,TroisMille Lent WideBlack
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:TroisMilleLent-WideThin
+FamilyName:TroisMille Lent
+StyleName:WideThin
+MenuName:TroisMille Lent WideThin
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:TroisMille Lent WideThin
+WritingScript:Roman
+OutlineFileName:/Users/ana/Dropbox (c-ll-ct-v-ly)/_C Studio/Banger +++/Homepage - Samuel Bassett/Logo fonts Folder/Document fonts/TroisMilleLent-WideThin.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:10464
+FileModTime:545314036
+NameArray:0,Mac,4,TroisMille Lent WideThin
+NameArray:0,Win,1,TroisMille Lent WideThin
+NameArray:0,Win,16,TroisMille Lent
+%EndFont
+
