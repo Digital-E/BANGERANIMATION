@@ -11,8 +11,6 @@ setTimeout(() => {
 
   let scaleRatioX;
 
-  let lastX;
-
   letters.forEach(item => {
     let letterStyle = {
       initialWidth: 0,
@@ -37,10 +35,12 @@ setTimeout(() => {
   });
 
   let totalWidth = 0;
+
   lettersStyles.forEach((item, index) => {
     if (index === 0) {
       letters[0].style.left = "0px";
       lettersStyles[index].initialX = 0;
+      lettersStyles[index].newX = 0;
       totalWidth = 0;
       return;
     }
@@ -88,17 +88,17 @@ setTimeout(() => {
 
     // Set Has Stretched
 
-    lettersStyles[randomLetterIndex].hasStretched = true;
+    // lettersStyles[randomLetterIndex].hasStretched = true;
 
     lettersStyles.forEach((letter, index) => {
       TweenMax.to(letters[index], 1, {
         x: 0,
-        ease: Elastic.easeOut
+        ease: "elastic.inOut(1, 1)"
       });
 
       TweenMax.to(letters[randomLetterIndex], 1, {
         scaleX: 1,
-        ease: Elastic.easeOut,
+        ease: "elastic.inOut(1, 1)",
         force3D: false
       });
     });
@@ -119,25 +119,33 @@ setTimeout(() => {
 
       if (index < randomLetterIndex) {
         TweenMax.to(letters[index], 0.2, {
-          x: -lettersStyles[randomLetterIndex].newX * scaleRatioX
+          x:
+            randomLetterIndex === 0
+              ? -lettersStyles[randomLetterIndex].initialWidth * scaleRatioX
+              : -lettersStyles[randomLetterIndex].newX * scaleRatioX
           // ease: Power3.easeInOut
         });
-        lastX = -lettersStyles[randomLetterIndex].newX * scaleRatioX;
       } else {
         TweenMax.to(letters[index], 0.2, {
-          x: lettersStyles[randomLetterIndex].newX * scaleRatioX
+          x:
+            randomLetterIndex === 0
+              ? lettersStyles[randomLetterIndex].initialWidth * scaleRatioX
+              : lettersStyles[randomLetterIndex].newX * scaleRatioX
 
           // ease: Power3.easeInOut
         });
-        lastX = lettersStyles[randomLetterIndex].newX * scaleRatioX;
       }
     });
 
     TweenMax.to(letters[randomLetterIndex], 0.2, {
       scaleX:
-        (lettersStyles[randomLetterIndex].newWidth +
-          lettersStyles[randomLetterIndex].newX * scaleRatioX * 2) /
-        lettersStyles[randomLetterIndex].newWidth,
+        randomLetterIndex === 0
+          ? (lettersStyles[randomLetterIndex].newWidth +
+              lettersStyles[randomLetterIndex].newWidth * scaleRatioX * 2) /
+            lettersStyles[randomLetterIndex].newWidth
+          : (lettersStyles[randomLetterIndex].newWidth +
+              lettersStyles[randomLetterIndex].newX * scaleRatioX * 2) /
+            lettersStyles[randomLetterIndex].newWidth,
       scaleY: 1,
       force3D: false
     });
@@ -155,8 +163,13 @@ setTimeout(() => {
     //Mouse Position
     scaleRatioX = xRatio * scaleRatio;
 
-    moveLetter(randomLetterIndex, scaleRatioX);
+    if (randomLetterIndex === 6) {
+      moveLetter(0, scaleRatioX);
+    } else {
+      moveLetter(randomLetterIndex, scaleRatioX);
+    }
   };
 
   window.addEventListener("mousemove", mousemove);
+  window;
 }, 0);
