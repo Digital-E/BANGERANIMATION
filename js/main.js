@@ -1,193 +1,188 @@
-setTimeout(() => {
-  let letters = document.querySelectorAll(".letter");
-  let bangerLogo = document.querySelector(".banger-logo");
+let letters = document.querySelectorAll(".letter");
+let bangerLogo = document.querySelector(".banger-logo");
 
-  let windowHeight = window.innerHeight;
-  let windowWidth = window.innerWidth;
+let windowHeight = window.innerHeight;
+let windowWidth = window.innerWidth;
 
-  // Get Letter Sizes
+// Get Letter Sizes
 
-  let lettersStyles = [];
+let lettersStyles = [];
 
-  let scaleRatioX;
+let scaleRatioX;
 
-  let hasToggled = false;
+let hasToggled = false;
 
-  letters.forEach(item => {
-    let letterStyle = {
-      initialWidth: 0,
-      initialHeight: 0,
-      initialX: 0,
-      initialY: 0,
-      aspectRatio: 0,
-      scale: 1,
-      newWidth: 0,
-      newX: 0,
-      newY: 0,
-      hasStretched: false
-    };
+let previousLetter;
 
-    letterStyle.initialWidth = item.getBoundingClientRect().width;
-    letterStyle.newWidth = item.getBoundingClientRect().width;
+letters.forEach(item => {
+  let letterStyle = {
+    initialWidth: 0,
+    initialHeight: 0,
+    initialX: 0,
+    initialY: 0,
+    aspectRatio: 0,
+    scale: 1,
+    newWidth: 0,
+    currentX: 0,
+    newY: 0,
+    hasStretched: false
+  };
 
-    letterStyle.aspectRatio =
-      letterStyle.initialHeight / letterStyle.initialWidth;
+  letterStyle.initialWidth = item.getBoundingClientRect().width;
+  letterStyle.newWidth = item.getBoundingClientRect().width;
 
-    lettersStyles.push(letterStyle);
-  });
+  letterStyle.aspectRatio =
+    letterStyle.initialHeight / letterStyle.initialWidth;
 
-  let totalWidth = 0;
+  lettersStyles.push(letterStyle);
+});
 
-  lettersStyles.forEach((item, index) => {
-    if (index === 0) {
-      letters[0].style.left = "0px";
-      lettersStyles[index].initialX = 0;
-      lettersStyles[index].newX = 0;
-      totalWidth = 0;
+let totalWidth = 0;
+
+lettersStyles.forEach((item, index) => {
+  if (index === 0) {
+    letters[0].style.left = "0px";
+    lettersStyles[index].initialX = 0;
+    lettersStyles[index].currentX = 0;
+    totalWidth = 0;
+    return;
+  }
+
+  letters[index].style.left = `${totalWidth +
+    lettersStyles[index - 1].initialWidth}px`;
+
+  lettersStyles[index].initialX =
+    totalWidth + lettersStyles[index - 1].initialWidth;
+
+  lettersStyles[index].currentX =
+    totalWidth + lettersStyles[index - 1].initialWidth;
+
+  totalWidth = totalWidth + lettersStyles[index - 1].initialWidth + 10;
+});
+
+//Set Logo Width
+
+bangerLogo.style.width = `${totalWidth}px`;
+
+//Stretch Ratio
+let scaleRatio = Math.round(1 + Math.random() * 3);
+
+// Random Letter Index
+
+let randomLetterIndex = Math.round(Math.random() * 5);
+
+previousLetter = randomLetterIndex;
+
+let moveLetter = (randomLetterIndex, scaleRatioX) => {
+  lettersStyles.forEach((letter, index) => {
+    if (index === randomLetterIndex) {
       return;
     }
 
-    letters[index].style.left = `${totalWidth +
-      lettersStyles[index - 1].initialWidth}px`;
+    if (index < randomLetterIndex) {
+      TweenMax.to(letters[index], 0.3, {
+        x: -100 * scaleRatioX
 
-    lettersStyles[index].initialX =
-      totalWidth + lettersStyles[index - 1].initialWidth;
+        // ease: Power3.easeInOut
+      });
+    } else {
+      TweenMax.to(letters[index], 0.3, {
+        x: 100 * scaleRatioX
 
-    lettersStyles[index].newX =
-      totalWidth + lettersStyles[index - 1].initialWidth;
-
-    totalWidth = totalWidth + lettersStyles[index - 1].initialWidth + 10;
+        // ease: Power3.easeInOut
+      });
+    }
   });
 
-  //Set Logo Width
+  TweenMax.to(letters[randomLetterIndex], 0.3, {
+    scaleX:
+      (lettersStyles[randomLetterIndex].newWidth + 100 * scaleRatioX * 2) /
+      lettersStyles[randomLetterIndex].newWidth,
 
-  bangerLogo.style.width = `${totalWidth}px`;
+    scaleY: 1,
+    force3D: false
+  });
+};
 
-  //Stretch Ratio
-  let scaleRatio = Math.round(Math.random() * 2);
+let changeLetter = () => {
+  hasClicked = true;
 
-  // Random Letter Index
-
-  let randomLetterIndex = Math.round(Math.random() * 6);
-
-  setInterval(() => {
-    //Remove Mouse Move Listener
-    window.removeEventListener("mousemove", mousemove);
-
-    // New Width
-    // lettersStyles[randomLetterIndex].newWidth =
-    //   lettersStyles[randomLetterIndex].newWidth +
-    //   lettersStyles[randomLetterIndex].newX * scaleRatioX * 2;
-
-    //New X
-    // lettersStyles.forEach((letter, index) => {
-    //   if (index < randomLetterIndex) {
-    //     lettersStyles[index].newX = lettersStyles[index].initialX - lastX;
-    //   } else {
-    //     lettersStyles[index].newX = lettersStyles[index].initialX + lastX;
-    //   }
-    // });
-
-    // Set Has Stretched
-
-    // lettersStyles[randomLetterIndex].hasStretched = true;
-
-    lettersStyles.forEach((letter, index) => {
-      TweenMax.to(letters[index], 1, {
-        x: 0,
-        ease: "elastic.inOut(1, 1)"
-      });
-
-      TweenMax.to(letters[randomLetterIndex], 1, {
-        scaleX: 1,
-        ease: "elastic.inOut(1, 1)",
-        force3D: false
-      });
+  lettersStyles.forEach((letter, index) => {
+    TweenMax.to(letters[index], 0.2, {
+      x: 0
+      // ease: Power3.easeInOut
     });
+  });
 
-    randomLetterIndex = Math.round(Math.random() * 6);
+  TweenMax.to(letters[randomLetterIndex], 0.2, {
+    scaleX: 1,
+    scaleY: 1,
+    force3D: false
+  });
 
-    //Add Mouse Move Listener
-    setTimeout(() => {
-      window.addEventListener("mousemove", mousemove);
-    }, 1000);
-  }, 2000);
+  scaleRatio = Math.round(1 + Math.random() * 3);
 
-  let moveLetter = (randomLetterIndex, scaleRatioX) => {
-    lettersStyles.forEach((letter, index) => {
-      if (index === randomLetterIndex) {
-        return;
-      }
+  while (randomLetterIndex === previousLetter) {
+    randomLetterIndex = Math.round(Math.random() * 5);
 
-      if (index < randomLetterIndex) {
-        TweenMax.to(letters[index], 0.2, {
-          x:
-            randomLetterIndex === 0
-              ? -lettersStyles[randomLetterIndex].initialWidth * scaleRatioX
-              : -lettersStyles[randomLetterIndex].newX * scaleRatioX
-          // ease: Power3.easeInOut
-        });
-      } else {
-        TweenMax.to(letters[index], 0.2, {
-          x:
-            randomLetterIndex === 0
-              ? lettersStyles[randomLetterIndex].initialWidth * scaleRatioX
-              : lettersStyles[randomLetterIndex].newX * scaleRatioX
-
-          // ease: Power3.easeInOut
-        });
-      }
-    });
-
-    TweenMax.to(letters[randomLetterIndex], 0.2, {
-      scaleX:
-        randomLetterIndex === 0
-          ? (lettersStyles[randomLetterIndex].newWidth +
-              lettersStyles[randomLetterIndex].newWidth * scaleRatioX * 2) /
-            lettersStyles[randomLetterIndex].newWidth
-          : (lettersStyles[randomLetterIndex].newWidth +
-              lettersStyles[randomLetterIndex].newX * scaleRatioX * 2) /
-            lettersStyles[randomLetterIndex].newWidth,
-      scaleY: 1,
-      force3D: false
-    });
-  };
-
-  let mousemove = e => {
-    //Mouse Position
-    let x = e.clientX;
-    let y = e.clientY;
-
-    //Mouse Position Ratio (in relation to viewport size)
-    let xRatio = x / windowWidth;
-    let yRatio = y / windowHeight;
-
-    //Mouse Position
-    scaleRatioX = xRatio * scaleRatio;
-
-    if (randomLetterIndex === 6) {
-      return;
-    } else {
-      moveLetter(randomLetterIndex, scaleRatioX);
+    if (randomLetterIndex !== previousLetter) {
+      previousLetter = randomLetterIndex;
+      break;
     }
-  };
+  }
+};
 
-  let changeBackground = () => {
-    if (!hasToggled) {
-      document.querySelector(".background-cover").style.display = "block";
-      document.querySelectorAll(".letter").forEach(letter => {
-        letter.children[0].classList.add("white");
-      });
-      hasToggled = true;
-    } else {
-      document.querySelector(".background-cover").style.display = "none";
-      document.querySelectorAll(".letter").forEach(letter => {
-        letter.children[0].classList.remove("white");
-      });
-      hasToggled = false;
-    }
-  };
+let changeBackground = () => {
+  if (!hasToggled) {
+    document.querySelector(".background-cover").style.display = "block";
+    document.querySelectorAll(".letter").forEach(letter => {
+      letter.children[0].classList.add("white");
+    });
+    hasToggled = true;
+  } else {
+    document.querySelector(".background-cover").style.display = "none";
+    document.querySelectorAll(".letter").forEach(letter => {
+      letter.children[0].classList.remove("white");
+    });
+    hasToggled = false;
+  }
+};
 
-  window.addEventListener("mousemove", mousemove);
-  window.addEventListener("click", changeBackground);
-}, 0);
+let moveGradientBackground = (scaleRatioX, scaleRatioY) => {
+  document.querySelector(
+    "body"
+  ).style.background = `linear-gradient(${90}deg, rgba(246, 154, 62, 1) ${scaleRatioX *
+    0.15 *
+    100}%, rgba(233, 79, 45, 1) 100%)`;
+
+  document.querySelector(
+    ".circle-gradient"
+  ).style.background = `linear-gradient(${-90 +
+    scaleRatioY *
+      20}deg, rgba(246, 154, 62, 1) ${0}%, rgba(233, 79, 45, 1) 100%)`;
+};
+
+let mousemove = e => {
+  //Mouse Position
+  let x = e.clientX;
+  let y = e.clientY;
+
+  //Mouse Position Ratio (in relation to viewport size)
+  let xRatio = x / windowWidth;
+  let yRatio = y / windowHeight;
+
+  //Mouse Position
+  scaleRatioX = xRatio * scaleRatio;
+  scaleRatioY = yRatio * scaleRatio;
+
+  moveLetter(randomLetterIndex, scaleRatioX);
+  moveGradientBackground(scaleRatioX, scaleRatioY);
+};
+
+let clickedScreen = () => {
+  changeBackground();
+  changeLetter();
+};
+
+window.addEventListener("mousemove", mousemove);
+window.addEventListener("click", clickedScreen);
