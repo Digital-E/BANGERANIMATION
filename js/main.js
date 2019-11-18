@@ -11,6 +11,8 @@ setTimeout(() => {
 
   let scaleRatioX;
 
+  let hasToggled = false;
+
   letters.forEach(item => {
     let letterStyle = {
       initialWidth: 0,
@@ -164,12 +166,28 @@ setTimeout(() => {
     scaleRatioX = xRatio * scaleRatio;
 
     if (randomLetterIndex === 6) {
-      moveLetter(0, scaleRatioX);
+      return;
     } else {
       moveLetter(randomLetterIndex, scaleRatioX);
     }
   };
 
+  let changeBackground = () => {
+    if (!hasToggled) {
+      document.querySelector(".background-cover").style.display = "block";
+      document.querySelectorAll(".letter").forEach(letter => {
+        letter.children[0].classList.add("white");
+      });
+      hasToggled = true;
+    } else {
+      document.querySelector(".background-cover").style.display = "none";
+      document.querySelectorAll(".letter").forEach(letter => {
+        letter.children[0].classList.remove("white");
+      });
+      hasToggled = false;
+    }
+  };
+
   window.addEventListener("mousemove", mousemove);
-  window;
+  window.addEventListener("click", changeBackground);
 }, 0);

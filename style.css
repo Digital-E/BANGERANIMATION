@@ -25,10 +25,26 @@ body {
 .banger-logo .letter {
   position: absolute;
   height: 150px;
-
-  /* transition: transform 0.2s 0.1s; */
 }
 
 .banger-logo .letter img {
   height: 100%;
+}
+
+.banger-logo .letter svg {
+  height: 100%;
+  fill: black;
+}
+
+.white {
+  fill: rgb(224, 100, 69) !important;
+}
+
+.background-cover {
+  position: absolute;
+  display: none;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+  background-color: black;
 }
