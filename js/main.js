@@ -14,11 +14,13 @@ let hasToggled = false;
 
 let previousLetter;
 
+let init = false;
+
 let currentX;
 let currentY;
 
-let previousX = 0;
-let previousY = 0;
+let previousX;
+let previousY;
 
 letters.forEach(item => {
   let letterStyle = {
@@ -172,6 +174,10 @@ let moveGradientBackground = (scaleRatioX, scaleRatioY) => {
 };
 
 let mousemove = e => {
+  if (!init) {
+    previousX = e.clientX;
+    init = true;
+  }
   //Mouse Position
   let x = e.clientX;
   let y = e.clientY;
@@ -190,8 +196,6 @@ let mousemove = e => {
   //Mouse Position
   scaleRatioX = xRatio * scaleRatio;
   scaleRatioY = yRatio * scaleRatio;
-
-  console.log(deltaX * 0.001);
 
   moveGradientBackground(scaleRatioX, scaleRatioY);
   if (deltaX * 0.001 < 0) return;
