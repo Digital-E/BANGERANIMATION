@@ -14,6 +14,12 @@ let hasToggled = false;
 
 let previousLetter;
 
+let currentX;
+let currentY;
+
+let previousX = 0;
+let previousY = 0;
+
 letters.forEach(item => {
   let letterStyle = {
     initialWidth: 0,
@@ -105,6 +111,9 @@ let moveLetter = (randomLetterIndex, scaleRatioX) => {
 };
 
 let changeLetter = () => {
+  previousX = currentX;
+  previousY = currentY;
+
   hasClicked = true;
 
   lettersStyles.forEach((letter, index) => {
@@ -167,6 +176,13 @@ let mousemove = e => {
   let x = e.clientX;
   let y = e.clientY;
 
+  currentX = e.clientX;
+  currentY = e.clientY;
+
+  let deltaX = currentX - previousX;
+
+  console.log(deltaX);
+
   //Mouse Position Ratio (in relation to viewport size)
   let xRatio = x / windowWidth;
   let yRatio = y / windowHeight;
@@ -175,8 +191,11 @@ let mousemove = e => {
   scaleRatioX = xRatio * scaleRatio;
   scaleRatioY = yRatio * scaleRatio;
 
-  moveLetter(randomLetterIndex, scaleRatioX);
+  console.log(deltaX * 0.001);
+
   moveGradientBackground(scaleRatioX, scaleRatioY);
+  if (deltaX * 0.001 < 0) return;
+  moveLetter(randomLetterIndex, deltaX * 0.005);
 };
 
 let clickedScreen = () => {
