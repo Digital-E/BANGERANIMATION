@@ -126,14 +126,12 @@ let changeBackground = () => {
       letter.children[0].classList.add("white");
     });
     hasToggled = true;
-    crazyRatio = 300;
   } else {
     document.querySelector(".background-cover").style.display = "none";
     document.querySelectorAll(".letter").forEach(letter => {
       letter.children[0].classList.remove("white");
     });
     hasToggled = false;
-    crazyRatio = 100;
   }
 };
 
@@ -177,9 +175,9 @@ let mousemove = e => {
   scaleRatioY = yRatio * scaleRatio;
 
   moveGradientBackground(scaleRatioX, scaleRatioY);
-  if (deltaX * 0.001 < 0) return;
-  if (deltaX * 0.001 > 0.3) return;
-  if (deltaY * 0.001 < 0) return;
+  if (deltaX * 0.001 < 0) deltaX = 1;
+  if (deltaX * 0.001 > 0.4) deltaX = 1;
+  // if (deltaY * 0.001 < 0) return;
   if (letterToScale === null) {
     return;
   }
