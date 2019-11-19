@@ -18,6 +18,8 @@ let init = false;
 
 let crazyRatio = 100;
 
+let multiplier = 3;
+
 let previousLetterToScale = 0;
 let letterToScale = null;
 
@@ -94,12 +96,12 @@ let moveLetter = (letterToScale, scaleRatioX, scaleRatioY) => {
 
     if (index < letterToScale) {
       TweenMax.to(letters[index], 0.3, {
-        x: -100 * scaleRatioX
+        x: -100 * scaleRatioX * multiplier
         // ease: Power3.easeInOut
       });
     } else {
       TweenMax.to(letters[index], 0.3, {
-        x: 100 * scaleRatioX
+        x: 100 * scaleRatioX * multiplier
 
         // ease: Power3.easeInOut
       });
@@ -108,7 +110,8 @@ let moveLetter = (letterToScale, scaleRatioX, scaleRatioY) => {
 
   TweenMax.to(letters[letterToScale], 0.3, {
     scaleX:
-      (lettersStyles[letterToScale].newWidth + crazyRatio * scaleRatioX * 2) /
+      (lettersStyles[letterToScale].newWidth +
+        crazyRatio * scaleRatioX * 2 * multiplier) /
       lettersStyles[letterToScale].newWidth,
 
     scaleY: 1 + scaleRatioY * 0.5,
@@ -162,7 +165,7 @@ let mousemove = e => {
   currentX = e.clientX;
   currentY = e.clientY;
 
-  let deltaX = Math.abs(currentX - previousX);
+  let deltaX = currentX - previousX;
   let deltaY = Math.abs(currentY - previousY);
 
   //Mouse Position Ratio (in relation to viewport size)
@@ -175,6 +178,7 @@ let mousemove = e => {
 
   moveGradientBackground(scaleRatioX, scaleRatioY);
   if (deltaX * 0.001 < 0) return;
+  if (deltaX * 0.001 > 0.3) return;
   if (deltaY * 0.001 < 0) return;
   if (letterToScale === null) {
     return;
