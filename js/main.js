@@ -16,6 +16,11 @@ let previousLetter;
 
 let init = false;
 
+let crazyRatio = 100;
+
+let previousLetterToScale = 0;
+let letterToScale = null;
+
 let currentX;
 let currentY;
 
@@ -81,16 +86,15 @@ let randomLetterIndex = Math.round(Math.random() * 5);
 
 previousLetter = randomLetterIndex;
 
-let moveLetter = (randomLetterIndex, scaleRatioX) => {
+let moveLetter = (letterToScale, scaleRatioX, scaleRatioY) => {
   lettersStyles.forEach((letter, index) => {
-    if (index === randomLetterIndex) {
+    if (index === letterToScale) {
       return;
     }
 
-    if (index < randomLetterIndex) {
+    if (index < letterToScale) {
       TweenMax.to(letters[index], 0.3, {
         x: -100 * scaleRatioX
-
         // ease: Power3.easeInOut
       });
     } else {
@@ -102,45 +106,14 @@ let moveLetter = (randomLetterIndex, scaleRatioX) => {
     }
   });
 
-  TweenMax.to(letters[randomLetterIndex], 0.3, {
+  TweenMax.to(letters[letterToScale], 0.3, {
     scaleX:
-      (lettersStyles[randomLetterIndex].newWidth + 100 * scaleRatioX * 2) /
-      lettersStyles[randomLetterIndex].newWidth,
+      (lettersStyles[letterToScale].newWidth + crazyRatio * scaleRatioX * 2) /
+      lettersStyles[letterToScale].newWidth,
 
-    scaleY: 1,
+    scaleY: 1 + scaleRatioY * 0.5,
     force3D: false
   });
-};
-
-let changeLetter = () => {
-  previousX = currentX;
-  previousY = currentY;
-
-  hasClicked = true;
-
-  lettersStyles.forEach((letter, index) => {
-    TweenMax.to(letters[index], 0.2, {
-      x: 0
-      // ease: Power3.easeInOut
-    });
-  });
-
-  TweenMax.to(letters[randomLetterIndex], 0.2, {
-    scaleX: 1,
-    scaleY: 1,
-    force3D: false
-  });
-
-  scaleRatio = Math.round(1 + Math.random() * 3);
-
-  while (randomLetterIndex === previousLetter) {
-    randomLetterIndex = Math.round(Math.random() * 5);
-
-    if (randomLetterIndex !== previousLetter) {
-      previousLetter = randomLetterIndex;
-      break;
-    }
-  }
 };
 
 let changeBackground = () => {
@@ -150,34 +123,38 @@ let changeBackground = () => {
       letter.children[0].classList.add("white");
     });
     hasToggled = true;
+    crazyRatio = 300;
   } else {
     document.querySelector(".background-cover").style.display = "none";
     document.querySelectorAll(".letter").forEach(letter => {
       letter.children[0].classList.remove("white");
     });
     hasToggled = false;
+    crazyRatio = 100;
   }
 };
 
 let moveGradientBackground = (scaleRatioX, scaleRatioY) => {
   document.querySelector(
     "body"
-  ).style.background = `linear-gradient(${90}deg, rgba(246, 154, 62, 1) ${scaleRatioX *
-    0.15 *
+  ).style.background = `linear-gradient(${scaleRatioX *
+    180}deg, rgba(246, 154, 62, 1) ${scaleRatioX *
+    0.2 *
     100}%, rgba(233, 79, 45, 1) 100%)`;
 
   document.querySelector(
     ".circle-gradient"
-  ).style.background = `linear-gradient(${-90 +
-    scaleRatioY *
-      20}deg, rgba(246, 154, 62, 1) ${0}%, rgba(233, 79, 45, 1) 100%)`;
+  ).style.background = `linear-gradient(${-90 *
+    scaleRatioX}deg, rgba(246, 154, 62, 1) ${0}%, rgba(233, 79, 45, 1) 100%)`;
 };
 
 let mousemove = e => {
   if (!init) {
     previousX = e.clientX;
+    previousY = e.clientY;
     init = true;
   }
+
   //Mouse Position
   let x = e.clientX;
   let y = e.clientY;
@@ -185,9 +162,8 @@ let mousemove = e => {
   currentX = e.clientX;
   currentY = e.clientY;
 
-  let deltaX = currentX - previousX;
-
-  console.log(deltaX);
+  let deltaX = Math.abs(currentX - previousX);
+  let deltaY = Math.abs(currentY - previousY);
 
   //Mouse Position Ratio (in relation to viewport size)
   let xRatio = x / windowWidth;
@@ -199,13 +175,42 @@ let mousemove = e => {
 
   moveGradientBackground(scaleRatioX, scaleRatioY);
   if (deltaX * 0.001 < 0) return;
-  moveLetter(randomLetterIndex, deltaX * 0.005);
+  if (deltaY * 0.001 < 0) return;
+  if (letterToScale === null) {
+    return;
+  }
+
+  moveLetter(letterToScale, deltaX * 0.005, deltaY * 0.005);
 };
 
 let clickedScreen = () => {
   changeBackground();
-  changeLetter();
 };
 
 window.addEventListener("mousemove", mousemove);
 window.addEventListener("click", clickedScreen);
+
+letters.forEach((letter, index) => {
+  letter.addEventListener("mouseenter", e => {
+    previousX = e.clientX;
+    letterToScale = parseInt(letter.getAttribute("id"));
+    previousLetterToScale = parseInt(letter.getAttribute("id"));
+  });
+  letter.addEventListener("mouseleave", e => {
+    previousX = e.clientX;
+    lettersStyles.forEach((letter, index) => {
+      TweenMax.to(letters[index], 0.3, {
+        x: 0
+        // ease: Power3.easeInOut
+      });
+    });
+
+    TweenMax.to(letters[previousLetterToScale], 0.3, {
+      scaleX: 1,
+      scaleY: 1,
+      force3D: false
+    });
+
+    letterToScale = null;
+  });
+});
