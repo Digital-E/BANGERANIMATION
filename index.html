@@ -7,10 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./style.css">
         <script src="./js/gsap-shockingly-green/minified/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
     </head>
     <body>
-        <!-- <img src="./assets/bangerlogo.svg"/> -->
+        <div class="banger-animation-container hide-banger-animation">
         <div class="circle-gradient"></div>
         <div class="background-cover"></div>
         <div class="banger-logo">
@@ -21,8 +20,247 @@
         <div class="letter" id="4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 258.5 213.5"><title>Asset 5</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><polygon points="0 0 0 213.5 258.5 213.5 258.5 153.2 107.3 153.2 107.3 134.8 255.7 134.8 255.7 76.4 107.3 76.4 107.3 59.7 257.4 59.7 257.4 0 0 0"/></g></g></svg></div>
         <div class="letter" id="5"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.4 213.5"><title>Asset 6</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><path d="M61.3,205.7v-91A16,16,0,0,0,51,99.2c4.3-2,9.8-6.6,9.8-17.8V19.8C60.8,6.6,53.3,0,43.6,0H0V213.5H28.1V115.4h1.8c2.9,0,3.2,1.7,3.2,3.7v87.5c0,3.2.9,5.7,2,6.9H62.4v-.6A21.29,21.29,0,0,1,61.3,205.7ZM33.1,87.6c0,2.6-.9,3.7-3.2,3.7h-2V21.6h2.3c2.6,0,2.9,1.1,2.9,3.7Z"/></g></g></svg></div>
     </div>
+</div>
         
-        <script src="./js/main.js" async defer></script>
+
+        <script>
+document.addEventListener(
+  "DOMContentLoaded",
+  (function() {
+
+
+    document
+      .querySelector(".banger-animation-container")
+      .classList.remove("hide-banger-animation");
+    let letters = document.querySelectorAll(".letter");
+    let bangerLogo = document.querySelector(".banger-logo");
+
+    let windowHeight = window.innerHeight;
+    let windowWidth = window.innerWidth;
+
+    // Get Letter Sizes
+
+    let lettersStyles = [];
+
+    let scaleRatioX;
+
+    let hasToggled = false;
+
+    let previousLetter;
+
+    let init = false;
+
+    let crazyRatio = 100;
+
+    let multiplier = 3;
+
+    let previousLetterToScale = 0;
+    let letterToScale = null;
+
+    let currentX;
+    let currentY;
+
+    let previousX;
+    let previousY;
+
+    letters.forEach(item => {
+      let letterStyle = {
+        initialWidth: 0,
+        initialHeight: 0,
+        initialX: 0,
+        initialY: 0,
+        aspectRatio: 0,
+        scale: 1,
+        newWidth: 0,
+        currentX: 0,
+        newY: 0,
+        hasStretched: false
+      };
+
+      letterStyle.initialWidth = item.getBoundingClientRect().width;
+      letterStyle.newWidth = item.getBoundingClientRect().width;
+
+      letterStyle.aspectRatio =
+        letterStyle.initialHeight / letterStyle.initialWidth;
+
+      lettersStyles.push(letterStyle);
+    });
+
+    let totalWidth = 0;
+
+    let margin = 10;
+
+    if(window.innerWidth <= 576) {
+        margin = 2;
+    }
+
+    lettersStyles.forEach((item, index) => {
+      if (index === 0) {
+        letters[0].style.left = "0px";
+        lettersStyles[index].initialX = 0;
+        lettersStyles[index].currentX = 0;
+        totalWidth = 0;
+        return;
+      }
+
+      letters[index].style.left = `${totalWidth +
+        lettersStyles[index - 1].initialWidth}px`;
+
+      lettersStyles[index].initialX =
+        totalWidth + lettersStyles[index - 1].initialWidth;
+
+      lettersStyles[index].currentX =
+        totalWidth + lettersStyles[index - 1].initialWidth;
+
+      totalWidth = totalWidth + lettersStyles[index - 1].initialWidth + margin;
+    });
+
+    //Set Logo Width
+
+    bangerLogo.style.width = `${totalWidth}px`;
+
+    //Stretch Ratio
+    let scaleRatio = Math.round(1 + Math.random() * 3);
+
+    // Random Letter Index
+
+    let randomLetterIndex = Math.round(Math.random() * 5);
+
+    previousLetter = randomLetterIndex;
+
+    let moveLetter = (letterToScale, scaleRatioX, scaleRatioY) => {
+      lettersStyles.forEach((letter, index) => {
+        if (index === letterToScale) {
+          return;
+        }
+
+        if (index < letterToScale) {
+          TweenMax.to(letters[index], 0.3, {
+            x: -100 * scaleRatioX * multiplier
+            // ease: Power3.easeInOut
+          });
+        } else {
+          TweenMax.to(letters[index], 0.3, {
+            x: 100 * scaleRatioX * multiplier
+
+            // ease: Power3.easeInOut
+          });
+        }
+      });
+
+      TweenMax.to(letters[letterToScale], 0.3, {
+        scaleX:
+          (lettersStyles[letterToScale].newWidth +
+            crazyRatio * scaleRatioX * 2 * multiplier) /
+          lettersStyles[letterToScale].newWidth,
+
+        scaleY: 1 + scaleRatioY * 0.5,
+        force3D: false
+      });
+    };
+
+    let changeBackground = () => {
+      if (!hasToggled) {
+        document.querySelector(".background-cover").style.display = "block";
+        document.querySelectorAll(".letter").forEach(letter => {
+          letter.children[0].classList.add("white");
+        });
+        hasToggled = true;
+      } else {
+        document.querySelector(".background-cover").style.display = "none";
+        document.querySelectorAll(".letter").forEach(letter => {
+          letter.children[0].classList.remove("white");
+        });
+        hasToggled = false;
+      }
+    };
+
+    let moveGradientBackground = (scaleRatioX, scaleRatioY) => {
+      document.querySelector(
+        ".banger-animation-container"
+      ).style.background = `linear-gradient(${scaleRatioX *
+        180}deg, rgba(246, 154, 62, 1) ${scaleRatioX *
+        0.2 *
+        100}%, rgba(233, 79, 45, 1) 100%)`;
+
+      document.querySelector(
+        ".circle-gradient"
+      ).style.background = `linear-gradient(${-90 *
+        scaleRatioX}deg, rgba(246, 154, 62, 1) ${0}%, rgba(233, 79, 45, 1) 100%)`;
+    };
+
+    let mousemove = e => {
+      if (!init) {
+        previousX = e.clientX;
+        previousY = e.clientY;
+        init = true;
+      }
+
+      //Mouse Position
+      let x = e.clientX;
+      let y = e.clientY;
+
+      currentX = e.clientX;
+      currentY = e.clientY;
+
+      let deltaX = currentX - previousX;
+      let deltaY = Math.abs(currentY - previousY);
+
+      //Mouse Position Ratio (in relation to viewport size)
+      let xRatio = x / windowWidth;
+      let yRatio = y / windowHeight;
+
+      //Mouse Position
+      scaleRatioX = xRatio * scaleRatio;
+      scaleRatioY = yRatio * scaleRatio;
+
+      moveGradientBackground(scaleRatioX, scaleRatioY);
+      if (deltaX * 0.001 < 0) deltaX = 1;
+      if (deltaX * 0.001 > 0.4) deltaX = 1;
+      // if (deltaY * 0.001 < 0) return;
+      if (letterToScale === null) {
+        return;
+      }
+
+      moveLetter(letterToScale, deltaX * 0.005, deltaY * 0.005);
+    };
+
+    let clickedScreen = () => {
+      changeBackground();
+    };
+
+    window.addEventListener("mousemove", mousemove);
+    window.addEventListener("click", clickedScreen);
+
+    letters.forEach((letter, index) => {
+      letter.addEventListener("mouseenter", e => {
+        previousX = e.clientX;
+        letterToScale = parseInt(letter.getAttribute("id"));
+        previousLetterToScale = parseInt(letter.getAttribute("id"));
+      });
+      letter.addEventListener("mouseleave", e => {
+        previousX = e.clientX;
+        lettersStyles.forEach((letter, index) => {
+          TweenMax.to(letters[index], 0.3, {
+            x: 0
+            // ease: Power3.easeInOut
+          });
+        });
+
+        TweenMax.to(letters[previousLetterToScale], 0.3, {
+          scaleX: 1,
+          scaleY: 1,
+          force3D: false
+        });
+
+        letterToScale = null;
+      });
+    });
+
+  })()
+);
+
+        </script>
     </body>
 </html>
 
